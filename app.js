@@ -21,10 +21,7 @@ mongoose.connection
 mongoose.connect(config.MONGO_URL, { useMongoClient: true });
 
 // redis
-const port = '6379';
-const host = '192.168.1.6379';
-
-const client = redis.createClient(host, port);
+const client = redis.createClient(6379, '192.168.1.200');
 client.on('connect', function () {
   console.log('connected to redis');
 });
