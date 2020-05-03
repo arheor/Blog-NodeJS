@@ -4,6 +4,9 @@ const path = require('path');
 const staticAsset = require('static-asset');
 const mongoose = require('mongoose');
 const redis = require('redis');
+const session = require('express-session');
+
+const RedisStore = require('connect-redis')(session);
 
 const config = require('./config');
 const routes = require('./routes');
@@ -21,13 +24,25 @@ mongoose.connection
 mongoose.connect(config.MONGO_URL, { useMongoClient: true });
 
 // redis
-const client = redis.createClient(6379, '192.168.1.200');
-client.on('connect', function () {
+const redisClient = redis.createClient(config.REDIS_PORT, config.REDIS_HOST);
+redisClient.on('connect', function () {
   console.log('connected to redis');
 });
 
 // express
 const app = express();
+
+// sessions
+app.use(
+  session({
+    secret: config.SESSION_SECRET,
+    resave: true,
+    saveUninitialized: false,
+    store: new RedisStore({
+      client: redisClient,
+    }),
+  })
+);
 
 // sets and uses
 app.set('view engine', 'ejs');
@@ -40,9 +55,17 @@ app.use(
   express.static(path.join(__dirname, 'node_modules', 'jquery', 'dist'))
 );
 
-// routes
+// routers
 app.get('/', (req, res) => {
-  res.render('index');
+  const id = req.session.userId;
+  const login = req.session.userLogin;
+
+  res.render('index', {
+    user: {
+      id,
+      login,
+    },
+  });
 });
 app.use('/api/auth', routes.auth);
 
