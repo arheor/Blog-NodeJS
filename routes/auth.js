@@ -4,7 +4,7 @@ const bcrypt = require('bcrypt-nodejs');
 
 const models = require('../models');
 
-// POST is register
+// POST for register
 router.post('/register', (req, res) => {
   const login = req.body.login;
   const password = req.body.password;
@@ -82,7 +82,7 @@ router.post('/register', (req, res) => {
   }
 });
 
-// POST is register
+// POST for login
 router.post('/login', (req, res) => {
   const login = req.body.login;
   const password = req.body.password;

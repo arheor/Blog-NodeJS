@@ -21,9 +21,9 @@ $(function () {
   });
 
   // clear
-  $('input').on('focus', function () {
-    $('p.error').remove();
-    $('input').removeClass('error');
+  $('form.login input, form.register input').on('focus', function () {
+    $('form.login p.error, form.register p.error').remove();
+    $('form.login input, form.register input').removeClass('error');
   });
 
   // register
@@ -45,7 +45,6 @@ $(function () {
       url: '/api/auth/register',
     }).done(function (data) {
       if (!data.ok) {
-        $('p.error').remove();
         $('.register h2').after('<p class="error">' + data.error + '</p>');
         if (data.fields) {
           data.fields.forEach(function (item) {
@@ -53,7 +52,8 @@ $(function () {
           });
         }
       } else {
-        $('.register h2').after('<p class="success">Отлично!</p>');
+        // $('.register h2').after('<p class="success">Отлично!</p>');
+        $(location).attr('href', '/');
       }
     });
   });

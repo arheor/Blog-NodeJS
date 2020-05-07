@@ -18,17 +18,17 @@ gulp.task('scss', () => {
     .pipe(sass())
     .pipe(
       autoprefixer(['last 15 versions', '> 1%', 'ie 8', 'ie 7'], {
-        cascade: true
+        cascade: true,
       })
     )
     .pipe(cssnano())
     .pipe(gulp.dest('public/stylesheets'));
 });
 
-gulp.task('serve', function(done) {
+gulp.task('serve', function (done) {
   nodemon({
     script: 'app.js',
-    ext: '.js, .json'
+    ext: '.js, .json',
   }).on('restart', () => {
     gulp.src('app.js');
   });
@@ -39,9 +39,13 @@ gulp.task('serve', function(done) {
 
 gulp.task('scripts', () =>
   gulp
-    .src(['dev/js/auth.js'])
+    .src([
+      'dev/js/auth.js',
+      'dev/js/post.js',
+      'node_modules/medium-editor/dist/js/medium-editor.min.js',
+    ])
     .pipe(concat('scripts.js'))
-    .pipe(uglify())
+    //.pipe(uglify())
     .pipe(gulp.dest('public/javascripts'))
 );
 

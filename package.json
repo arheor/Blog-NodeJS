@@ -34,10 +34,14 @@
     "gulp-concat": "^2.6.1",
     "gulp-uglifyjs": "^0.6.2",
     "jquery": "^3.4.1",
+    "medium-editor": "^5.23.3",
     "mongoose": "4.13.7",
+    "mongoose-url-slugs": "^1.0.2",
     "passport": "^0.4.1",
     "passport-local": "^1.0.0",
     "redis": "^3.0.2",
-    "static-asset": "^0.6.0"
+    "static-asset": "^0.6.0",
+    "transliter": "^2.2.1",
+    "turndown": "^6.0.0"
   }
 }
