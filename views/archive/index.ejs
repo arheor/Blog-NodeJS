@@ -1,4 +1,4 @@
-<%- include('layout/header.ejs') %>
+<%- include('../layout/header.ejs') %>
 
 <div class="main">
   <div class="container">
@@ -18,7 +18,9 @@
         <div class="bottom">
           <div class="author">
             Автор:
-            <a href="/">Автор</a>
+            <a href="/users/<%=posts.posts[i].owner.login %>">
+              <%=posts.posts[i].owner.login %>
+            </a>
           </div>
           <a href="/">Комментарии</a>
         </div>
@@ -52,8 +54,8 @@
       <% } %>
     </div>
 
-    <%- include('layout/sidebar.ejs') %>
+    <%- include('../layout/sidebar.ejs') %>
   </div>
 </div>
 
-<%- include('layout/footer.ejs') %>
+<%- include('../layout/footer.ejs') %>
