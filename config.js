@@ -11,4 +11,5 @@ module.exports = {
   REDIS_PORT: process.env.REDIS_PORT,
   REDIS_HOST: process.env.REDIS_HOST,
   IS_PRODUCTION: process.env.NODE_ENV === 'production',
+  PER_PAGE: process.env.PER_PAGE,
 };

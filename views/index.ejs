@@ -3,43 +3,34 @@
 <div class="main">
   <div class="container">
     <div class="content">
+      <% for (var i = 0; i < posts.length; i++) { %>
       <div class="post">
         <div class="top">
           <h2>
-            Точная дата презентации OnePlus 8 раскрыта надёжным инсайдером
+            <%=posts[i].title %>
           </h2>
         </div>
         <div class="body">
-          <p>
-            Вслед за первыми официальными подробностями о будущих смартфонах
-            OnePlus и реальной фотографии одного из них в сети появилась
-            информация о точной дате презентации. Поступила она от авторитетного
-            немецкого инсайдера Макса Джея.
-          </p>
+          <p><%=posts[i].body %></p>
         </div>
         <div class="bottom">
-          <div class="author">Автор: <a href="/">Автор</a></div>
+          <div class="author">
+            Автор:
+            <a href="/">Гедеван</a>
+          </div>
           <a href="/">Комментарии</a>
         </div>
       </div>
-      <div class="post">
-        <div class="top">
-          <h2>
-            Точная дата презентации OnePlus 8 раскрыта надёжным инсайдером
-          </h2>
-        </div>
-        <div class="body">
-          <p>
-            Вслед за первыми официальными подробностями о будущих смартфонах
-            OnePlus и реальной фотографии одного из них в сети появилась
-            информация о точной дате презентации. Поступила она от авторитетного
-            немецкого инсайдера Макса Джея.
-          </p>
-        </div>
-        <div class="bottom">
-          <div class="author">Автор: <a href="/">Автор</a></div>
-          <a href="/">Комментарии</a>
-        </div>
+      <% } %>
+
+      <div class="pagination">
+        <% if (current > 2) { %>
+        <a class="new" href="/archive/<%= Number(current) - 1 %>">← К новым</a>
+        <% } %> <% if (current == 2) { %>
+        <a class="new" href="/">← На главную</a>
+        <% } %> <% if (pages > 0 && current < pages) { %>
+        <a class="old" href="/archive/<%= Number(current) + 1 %>">К старым →</a>
+        <% } %>
       </div>
     </div>
 
