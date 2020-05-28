@@ -12,12 +12,36 @@
       min-height: 100px;
       // border: 1px solid $greyColor;
       .pagination {
-        font-size: 1.15em;
-        .old {
-          float: right;
+        display: flex;
+        justify-content: center;
+
+        li {
+          margin: 0px 5px;
+          list-style: none;
+          border: 1px solid #e8e8e8;
+          padding: 3px 5px;
+          background-color: white;
+
+          a,
+          a:visited,
+          a:active,
+          a:hover {
+            text-decoration: none;
+            color: rgb(0, 0, 238);
+          }
         }
-        .new {
-          float: left;
+
+        li.active {
+          font-weight: bolder;
+          border-bottom-color: black;
+
+          a {
+            color: black;
+          }
+        }
+
+        li.posts-first,
+        li.posts-last {
         }
       }
     }
@@ -35,7 +59,7 @@
         min-height: 100px;
         border: 1px solid $greyColor;
         background-color: $whiteColor;
-        border-radius: $borderRadius + 10;
+        border-radius: $borderRadius;
       }
     }
 

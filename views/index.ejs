@@ -3,35 +3,51 @@
 <div class="main">
   <div class="container">
     <div class="content">
-      <% for (var i = 0; i < posts.length; i++) { %>
+      <% for (var i = 0; i < posts.posts.length; i++) { %>
       <div class="post">
         <div class="top">
           <h2>
-            <%=posts[i].title %>
+            <%=posts.posts[i].title %>
           </h2>
         </div>
         <div class="body">
-          <p><%=posts[i].body %></p>
+          <p><%=posts.posts[i].body %></p>
         </div>
         <div class="bottom">
           <div class="author">
             Автор:
-            <a href="/">Гедеван</a>
+            <a href="/">Автор</a>
           </div>
           <a href="/">Комментарии</a>
         </div>
       </div>
-      <% } %>
+      <% } %> <% if (posts && posts.pages > 0) { %> <% perPage =
+      Number(posts.perPage); %> <% pagesSkip = perPage + 1; %> <% current =
+      Number(posts.current); %>
 
-      <div class="pagination">
-        <% if (current > 2) { %>
-        <a class="new" href="/archive/<%= Number(current) - 1 %>">← К новым</a>
-        <% } %> <% if (current == 2) { %>
-        <a class="new" href="/">← На главную</a>
-        <% } %> <% if (pages > 0 && current < pages) { %>
-        <a class="old" href="/archive/<%= Number(current) + 1 %>">К старым →</a>
-        <% } %>
-      </div>
+      <!--DEBUG
+    <%= perPage %>|<%= pagesSkip %>
+    -->
+
+      <ul class="pagination">
+        <% if (!current || current < 0 || current > posts.pages) { %>
+        <li><a href="/1">Go to first page...</a></li>
+        <% } else { %> <% if (posts.current > 1) { %>
+        <li><a href="/">Первая</a></li>
+        <% } %> <% var i = (current > pagesSkip ? current - perPage : 1) %> <%
+        for (; i <= (current + perPage) && i <= posts.pages; i++) { %> <% if (i
+        == posts.current) { %>
+        <li class="active"><a><%= i %></a></li>
+        <% } else if(i == 1) { %>
+        <li><a href="/">1</a></li>
+        <% } else { %>
+        <li><a href="/archive/<%= i %>"><%= i %></a></li>
+        <% } %> <% } %> <% if (posts.current < posts.pages) { %>
+        <li><a href="/archive/<%= posts.pages %>">Последняя</a></li>
+        <% } %> <% } %>
+        <!--/else-->
+      </ul>
+      <% } %>
     </div>
 
     <%- include('layout/sidebar.ejs') %>

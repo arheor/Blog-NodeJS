@@ -17,12 +17,19 @@ function posts(req, res) {
       models.Post.count()
         .then((count) => {
           res.render('index', {
-            posts,
-            current: page,
-            pages: Math.ceil(count / perPage),
             user: {
               id: userId,
               login: userLogin,
+            },
+            posts: {
+              // посты найденные в базе
+              posts,
+              // текущая страница :page
+              current: page,
+              // общее кол-во страниц
+              pages: Math.ceil(count / perPage),
+              // постов на странице
+              perPage: config.PER_PAGE,
             },
           });
         })
