@@ -36,7 +36,7 @@
     "gulp-uglifyjs": "^0.6.2",
     "jquery": "^3.4.1",
     "medium-editor": "^5.23.3",
-    "mongoose": "4.13.7",
+    "mongoose": "5.7.5",
     "mongoose-url-slugs": "^1.0.2",
     "passport": "^0.4.1",
     "passport-local": "^1.0.0",
