@@ -11,7 +11,7 @@
       </spam>
     </div>
     <%= item.body %>
-    <span class="link" id="reply">ответить</span>
+    <span class="link reply">ответить</span>
     <%- include('./comments.ejs', {items: item.children}) %>
   </li>
   <% }) %> <% if (items.length) { %>

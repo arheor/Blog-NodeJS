@@ -57,7 +57,7 @@ router.get('/posts/:post', async (req, res, next) => {
     try {
       const post = await models.Post.findOne({
         url,
-      });
+      }).populate('owner', 'login');
       if (!post) {
         const err = new Error('Not Found');
         err.status = 404;

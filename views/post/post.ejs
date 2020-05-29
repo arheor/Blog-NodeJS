@@ -17,7 +17,8 @@
         <div class="bottom">
           <div class="author">
             Автор:
-            <a href="/">Автор</a>
+            <a href="/users/<%=post.owner.login %>">
+              <%=post.owner.login %>
           </div>
         </div>
       </div>
@@ -27,7 +28,6 @@
         <div class="comment-list">
           <%- include('../layout/comments.ejs', {items: comments}) %>
 
-          <span class="link" id="new">Оставить комментарий</span>
           <form class="comment">
             <textarea name="body"></textarea>
             <div class="buttons">

@@ -22,7 +22,9 @@
               <%=posts.posts[i].owner.login %>
             </a>
           </div>
-          <a href="/">Комментарии</a>
+          <a href="/posts/<%=posts.posts[i].url %>#<%=posts.posts[i].id %>"
+            >Комментарии: <%=posts.posts[i].commentCount %>
+          </a>
         </div>
       </div>
       <% } %> <% if (posts && posts.pages > 0) { %> <% perPage =
