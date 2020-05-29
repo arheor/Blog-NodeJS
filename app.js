@@ -22,7 +22,8 @@ mongoose.connection
     console.log(`Connected to ${info.host}:${info.port}/${info.name}`);
     //require('./mocks')();
   });
-mongoose.connect(config.MONGO_URL, { useMongoClient: true });
+//--no - deprecation;
+mongoose.connect(config.MONGO_URL, {});
 
 // redis
 const redisClient = redis.createClient(config.REDIS_PORT, config.REDIS_HOST);
@@ -60,6 +61,7 @@ app.use(
 app.use('/', routes.archive);
 app.use('/api/auth', routes.auth);
 app.use('/post', routes.post);
+app.use('/comment', routes.comment);
 
 // catch 404 and forward to error handler
 app.use((req, res, next) => {
