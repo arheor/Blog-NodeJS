@@ -34,7 +34,7 @@
     "faker": "^4.1.0",
     "gulp-concat": "^2.6.1",
     "gulp-uglifyjs": "^0.6.2",
-    "jquery": "^3.4.1",
+    "jquery": "^3.5.0",
     "medium-editor": "^5.23.3",
     "moment": "^2.26.0",
     "mongoose": "^5.9.16",
