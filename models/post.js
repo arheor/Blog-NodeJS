@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 // const URLSlugs = require('mongoose-url-slugs');
-const tr = require('transliter');
+//const tr = require('transliter');
 
 const schema = new Schema(
   {
