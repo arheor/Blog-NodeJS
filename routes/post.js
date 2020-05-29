@@ -4,6 +4,37 @@ const TurndownService = require('turndown');
 
 const models = require('../models');
 
+// GET for edit
+router.get('/edit/:id', async (req, res, next) => {
+  const userId = req.session.userId;
+  const userLogin = req.session.userLogin;
+  const id = req.params.id.trim().replace(/ +(?= )/g, '');
+
+  if (!userId || !userLogin) {
+    res.redirect('/');
+  } else {
+    try {
+      const post = await models.Post.findById(id);
+
+      if (!post) {
+        const err = new Error('Not Found');
+        err.status = 404;
+        next(err);
+      }
+
+      res.render('post/edit', {
+        post,
+        user: {
+          id: userId,
+          login: userLogin,
+        },
+      });
+    } catch (error) {
+      console.log(error);
+    }
+  }
+});
+
 // GET for add
 router.get('/add', (req, res) => {
   const userId = req.session.userId;
@@ -12,7 +43,7 @@ router.get('/add', (req, res) => {
   if (!userId || !userLogin) {
     res.redirect('/');
   } else {
-    res.render('post/add', {
+    res.render('post/edit', {
       user: {
         id: userId,
         login: userLogin,
